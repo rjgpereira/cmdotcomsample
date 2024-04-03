@@ -1,5 +1,6 @@
 package nl.cjp.app
 
+import android.content.Intent
 import android.util.Log
 import com.cm.cmpush.CMPush
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -29,6 +30,17 @@ class PushReceiver : FirebaseMessagingService() {
      * The CMPush library will notify CM the message has been received and create the Notification
      */
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
+
+        CMPush.initialize(
+            context = this,
+            applicationKey = "API_KEY",
+            channelId = "CMPushAnnouncements",
+            channelName = "Announcements",
+            channelDescription = "Announcements of our latest products!",
+            notificationIcon = R.drawable.ic_launcher_foreground,
+            notificationIntent = Intent(this, MainActivity::class.java)
+        )
+
         // Notify CMPush library that a push message has been received
         CMPush.pushReceived(
             context = applicationContext,
