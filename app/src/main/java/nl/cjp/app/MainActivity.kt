@@ -32,20 +32,6 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        val startIntent = Intent(applicationContext, MainActivity::class.java)
-        startIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        startIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-
-        CMPush.initialize(
-            context = this,
-            applicationKey = "API_KEY",
-            channelId = "CMPushAnnouncements",
-            channelName = "Announcements",
-            channelDescription = "Announcements of our latest products!",
-            notificationIcon = R.drawable.ic_launcher_foreground,
-            notificationIntent = startIntent
-        )
-
         FirebaseApp.initializeApp(this)
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
