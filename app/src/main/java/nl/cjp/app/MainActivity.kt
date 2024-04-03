@@ -47,7 +47,6 @@ class MainActivity : ComponentActivity() {
         )
 
         FirebaseApp.initializeApp(this)
-//        Log.d("HEY", FirebaseMessaging.getInstance().token.toString())
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
                 Log.w("FCM", "Fetching FCM registration token failed", task.exception)
